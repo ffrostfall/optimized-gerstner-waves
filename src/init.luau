@@ -72,11 +72,11 @@ end
 --[[
 	It's async because we're yielding until all waves are complete
 ]]
-function ocean.solve_plane_async(plane: Plane, waves: { Wave }, t: number): SolvedPlane
+function ocean.solve_plane_async(plane: Plane, waves: { Wave }, t: number): { [vector]: vector }
 	local running_thread = coroutine.running()
 
 	-- [unique wave id]: SolvedPlane | false (not arrived yet)
-	local completed_wave_offsets: { [string]: SolvedPlane | false } = {}
+	local completed_wave_offsets: { [string]: { vector } | false } = {}
 	local all_wave_ids: { string } = {}
 
 	for _, wave in waves do
@@ -87,16 +87,10 @@ function ocean.solve_plane_async(plane: Plane, waves: { Wave }, t: number): Solv
 		-- It's actually worse to split this function off because it uses two upvalues.
 		-- If it were split up, we'd need to do weird table reference stuff.
 		task.spawn(function()
-			-- Workaround because you can't send vectors as keys between actors.
-			local points, offsets = wave.actor.invoke:Invoke(plane, wave.direction, wave.amplitude, wave.frequency, t)
-			local solved_wave: SolvedPlane = {}
-
-			for index, undisturbed_point in points do
-				solved_wave[undisturbed_point] = offsets[index]
-			end
+			local points = wave.actor.invoke:Invoke(plane, wave.direction, wave.amplitude, wave.frequency, t)
 
 			-- Mark the wave as complete.
-			completed_wave_offsets[wave.unique_id] = solved_wave
+			completed_wave_offsets[wave.unique_id] = points
 
 			-- Resumption logic:
 			-- If all waves are complete, we can resume the main thread.
@@ -130,8 +124,9 @@ function ocean.solve_plane_async(plane: Plane, waves: { Wave }, t: number): Solv
 		-- Asserts are better than typecasts
 		assert(typeof(solved_wave) ~= "boolean", "luau, or wave did not complete?")
 
-		for undisturbed_point, offset in solved_wave do
-			solved_plane[undisturbed_point] += offset
+		-- Workaround because you can't send vectors as keys between actors.
+		for plane_index, offset in solved_wave do
+			solved_plane[plane[plane_index]] += offset
 		end
 	end
 
