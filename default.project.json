@@ -1,0 +1,21 @@
+{
+	"name": "optimized-gerstner-waves",
+
+	"emitLegacyScripts": false,
+
+	"tree": {
+		"$className": "DataModel",
+
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+
+			"ocean": {
+				"$path": "src"
+			},
+
+			"ocean_test": {
+				"$path": "tests"
+			}
+		}
+	}
+}

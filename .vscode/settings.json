@@ -1,0 +1,32 @@
+{
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+
+	"[luau]": {
+		"editor.defaultFormatter": "JohnnyMorganz.stylua",
+		"editor.formatOnSave": true
+	},
+
+	"luau-lsp.types.definitionFiles": [".vscode/vectorTypes.d.luau"],
+	
+	"luau-lsp.completion.imports.separateGroupsWithLine": true,
+	"luau-lsp.completion.imports.suggestRequires": false,
+	"luau-lsp.completion.imports.suggestServices": true,
+
+	"luau-lsp.diagnostics.strictDatamodelTypes": true,
+	"luau-lsp.ignoreGlobs": [
+		".vscode/**"
+	],
+
+	"luau-lsp.sourcemap.autogenerate": false,
+	"luau-lsp.sourcemap.enabled": true,
+	"luau-lsp.sourcemap.sourcemapFile": "sourcemap.json",
+
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+
+	"prettier.useTabs": true,
+	"stylua.targetReleaseVersion": "latest"
+}
