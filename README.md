@@ -15,4 +15,5 @@ Prerequisites:
 - Have Rokit installed
 - Have roblox studio (lol)
 
-All you need to do to set the repo up is open a new Roblox place file, and then run `lune run dev`, and you're set!
+1. Run `rokit install`
+2. Open a new Roblox place file, and then run `lune run dev`, and you're set!
