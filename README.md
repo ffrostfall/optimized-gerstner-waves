@@ -1,6 +1,6 @@
 # Optimized Gerstner Waves
 
-Based off (Tessendorf, J. (2001), "Simulating Ocean Water")[https://jtessen.people.clemson.edu/reports/papers_files/coursenotes2002.pdf]
+Based off [Tessendorf, J. \(2001\), "Simulating Ocean Water"](https://jtessen.people.clemson.edu/reports/papers_files/coursenotes2002.pdf)
 
 ## Overview
 
