@@ -29,7 +29,5 @@ return function(points: { vector }, direction: vector, amplitude: number, freque
 		table.insert(solved_offsets, solved_offset)
 	end
 
-	task.synchronize()
-
 	return solved_offsets
 end
